@@ -4,7 +4,7 @@ This project led to the development of a feature-rich Todo app for Android, buil
 
 ## App screenshots
 <div>
-    <img src="AppImages/Home_Screen.jpg" alt="Home screen" width="30%">
-    <img src="AppImages/Add_Todo.jpg" alt="Add todo screen" width="30%">
+    <img src="AppImages/Home_Screen.jpg" alt="Home screen" width="30%"; margin-right: 10px;>
+    <img src="AppImages/Add_Todo.jpg" alt="Add todo screen" width="30%"; margin-right: 10px;>
     <img src="AppImages/Display_Todo.jpg" alt="Display todo screen" width="30%">
 </div>
