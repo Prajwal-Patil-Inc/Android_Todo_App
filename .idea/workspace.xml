@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6ca54a52-45b8-4337-9db2-7a0df5f04f87" name="Changes" comment="Removed unnecessary files and imports" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Prajwal\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="My Application" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="My Application" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="My Application" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="My Application" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Object" />
+        <option value="Class" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2YDnp5hotFSCojG0vvgII2q224x" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.android.tools.idea.devicemanager.tab&quot;: &quot;Physical&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Prajwal/AndroidStudioProjects/com6510&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="My_Application.app.main" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6ca54a52-45b8-4337-9db2-7a0df5f04f87" name="Changes" comment="" />
+      <created>1700069197809</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700069197809</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added multiple files:&#10;1. Main screen, which contains 6 boxes for todo categories.&#10;2. Todo screen which will have the main todos.&#10;&#10;The todo screen does not have Navigation bar in it. It can be implemented by adding the code given in the ScaffoldComponent.kt&#10;&#10;Please note, this is just the prototype for the UI.">
+      <created>1700607843605</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700607843605</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added multiple files:&#10;1. Added the entity, dao, repository, database and viewmodel for simply fetching the value from the user input and storing it in the database.&#10;2. Added the test functionality for navigating between pages. *Please check the fun App() in MainActivity*">
+      <created>1700764513912</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700764513913</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Made multiple changes:&#10;1. Deleted the repository package as it is not longer being used. Initialized the dao in TodoViewModel only.&#10;2. Making use of the scaffold for every screen&#10;3. Added the functionality to fetch the todos from the database and display it on the TodoScreen&#10;4. Added user input validation on the add todo screen so that null todos will not be saved in the database.">
+      <created>1700935532381</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700935532381</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Made multiple changes:&#10;1. Fixed the app crashing when newly installed or no data in the database.&#10;2. Added the date in the todos which will be fetched automatically for now.&#10;3. The category boxes are now showing the category relevant data. Added filters.&#10;4. Changed the app name to &quot;Todo App&quot;">
+      <created>1701026599354</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701026599354</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Made multiple changes:&#10;1. Fixed the Todo screen UI issues&#10;2. Added the isFavorite and isImportant toggles">
+      <created>1701035543464</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701035543464</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added the filter to display important marked todos">
+      <created>1701036187180</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701036187180</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added a function to check if there are important todos. Filtering accordingly.">
+      <created>1701036765865</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701036765866</updated>
+    </task>
+    <task id="LOCAL-00008" summary="1. Added Date picker and Time picker to schedule todos for future dates&#10;2. Added the isFinished, isDeleted in the database to filter the todos further.&#10;3. Minor UI fixes.">
+      <created>1701188994346</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1701188994346</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Correction in code: Inserting todo via TodoViewModel.">
+      <created>1701195397376</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1701195397377</updated>
+    </task>
+    <task id="LOCAL-00010" summary="1. Added expandable view to the todos. Triggered when clicked on the todo card.&#10;2. Added bottom bar navigation.&#10;3. Moved the '+' button to the bottom bar.&#10;4. Added the filter on the Favorites screen to fetch only the favorite todos.&#10;5. Fixed minor UI issues.">
+      <created>1701209830075</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1701209830075</updated>
+    </task>
+    <task id="LOCAL-00011" summary="1. Added subtasks (Entity, dao, viewModel, add subtask screen) so that each subtask is linked with its main Task.&#10;3. Displaying subtask on the TodoScreen in the expandable list view.&#10;2. Made necessary changes to handle the UI navigation (From TodoScreen to add Todo and back).">
+      <created>1701296521015</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1701296521015</updated>
+    </task>
+    <task id="LOCAL-00012" summary="1. Added todo templates to select from and edit for users.&#10;2. Added the template todos data class with some predefined templates.&#10;3. Fixed the title bar title update.&#10;4. Minor fixes.">
+      <created>1701530561758</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1701530561758</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fixed the subtasks issue.">
+      <created>1701539241011</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1701539241012</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fixed the DropdownMenuItem not being visible issue.">
+      <created>1701610087143</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1701610087143</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixed the DropdownMenuItem not being visible.">
+      <created>1701610873360</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1701610873360</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added the date and time picker in the subtasks template edit">
+      <created>1701611613052</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701611613052</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Template todos correction">
+      <created>1701715784163</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701715784163</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Added the functionality to check the template subtask todos even before adding.&#10;Displaying the already &quot;isCompleted&quot; subtask todos on the TodoScreen as checked">
+      <created>1701724618070</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701724618070</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Edit todos Scheduled date and time">
+      <created>1701967664201</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1701967664201</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fixed the subtask scheduled date and time UI">
+      <created>1701974285448</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1701974285448</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added default time when creating todo">
+      <created>1701974650860</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1701974650860</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added the functionality to edit the subtask scheduled date and time">
+      <created>1701976510460</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1701976510461</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Minor UI fix">
+      <created>1701979333688</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1701979333688</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Minor code fix">
+      <created>1701979577962</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1701979577962</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Modified the code to take images from the gallery and save in the todo. &#10;The image is displayed on the Todo Screen">
+      <created>1701985994217</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1701985994217</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Modified the code to take images from the gallery and save in the todo. &#10;The image is displayed on the Todo Screen">
+      <created>1701986622755</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1701986622755</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Take images from the camera, save the URI in the database and display it on the todo screen">
+      <created>1701987186367</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1701987186367</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Surrounding the image display with try catch to avoid app crashing">
+      <created>1702030707707</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1702030707707</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fixed the todos display in category logic with some minor fixes">
+      <created>1702497791336</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1702497791336</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Minor UI navigation issues fixed">
+      <created>1702500478784</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1702500478784</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Subtasks checked value reflect in the database">
+      <created>1702503154343</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1702503154343</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Minor fixes">
+      <created>1702508823523</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1702508823523</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Added a confirmation dialog before permanently deleting the todo from the bin.">
+      <created>1702510490746</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1702510490746</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Removed unnecessary files and imports">
+      <created>1702510886989</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1702510886989</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Correction in code: Inserting todo via TodoViewModel." />
+    <MESSAGE value="1. Added expandable view to the todos. Triggered when clicked on the todo card.&#10;2. Added bottom bar navigation.&#10;3. Moved the '+' button to the bottom bar.&#10;4. Added the filter on the Favorites screen to fetch only the favorite todos.&#10;5. Fixed minor UI issues." />
+    <MESSAGE value="1. Added subtasks (Entity, dao, viewModel, add subtask screen) so that each subtask is linked with its main Task.&#10;3. Displaying subtask on the TodoScreen in the expandable list view.&#10;2. Made necessary changes to handle the UI navigation (From TodoScreen to add Todo and back)." />
+    <MESSAGE value="1. Added todo templates to select from and edit for users.&#10;2. Added the template todos data class with some predefined templates.&#10;3. Fixed the title bar title update.&#10;4. Minor fixes." />
+    <MESSAGE value="Fixed the subtasks issue." />
+    <MESSAGE value="Fixed the DropdownMenuItem not being visible issue." />
+    <MESSAGE value="Fixed the DropdownMenuItem not being visible." />
+    <MESSAGE value="Added the date and time picker in the subtasks template edit" />
+    <MESSAGE value="Template todos correction" />
+    <MESSAGE value="Added the functionality to check the template subtask todos even before adding.&#10;Displaying the already &quot;isCompleted&quot; subtask todos on the TodoScreen as checked" />
+    <MESSAGE value="Edit todos Scheduled date and time" />
+    <MESSAGE value="Fixed the subtask scheduled date and time UI" />
+    <MESSAGE value="Added default time when creating todo" />
+    <MESSAGE value="Added the functionality to edit the subtask scheduled date and time" />
+    <MESSAGE value="Minor UI fix" />
+    <MESSAGE value="Minor code fix" />
+    <MESSAGE value="Modified the code to take images from the gallery and save in the todo. &#10;The image is displayed on the Todo Screen" />
+    <MESSAGE value="Take images from the camera, save the URI in the database and display it on the todo screen" />
+    <MESSAGE value="Surrounding the image display with try catch to avoid app crashing" />
+    <MESSAGE value="Fixed the todos display in category logic with some minor fixes" />
+    <MESSAGE value="Minor UI navigation issues fixed" />
+    <MESSAGE value="Subtasks checked value reflect in the database" />
+    <MESSAGE value="Minor fixes" />
+    <MESSAGE value="Added a confirmation dialog before permanently deleting the todo from the bin." />
+    <MESSAGE value="Removed unnecessary files and imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary files and imports" />
+  </component>
+</project>

@@ -1,0 +1,356 @@
+Index: app/src/main/java/com/example/myapplication/todoViewModels/TodoViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication.todoViewModels\r\n\r\nimport android.app.Application\r\nimport androidx.lifecycle.AndroidViewModel\r\nimport androidx.lifecycle.viewModelScope\r\nimport com.example.myapplication.todoDatabase.TodoDatabase\r\nimport com.example.myapplication.todoEntities.Todo\r\nimport kotlinx.coroutines.Dispatchers\r\nimport kotlinx.coroutines.flow.Flow\r\nimport kotlinx.coroutines.flow.firstOrNull\r\nimport kotlinx.coroutines.launch\r\nimport kotlinx.coroutines.runBlocking\r\nimport java.time.LocalDate\r\nimport java.time.format.DateTimeFormatter\r\n\r\nclass TodoViewModel(app: Application) : AndroidViewModel(app) {\r\n    private val context = getApplication<Application>().applicationContext\r\n    private val dao = TodoDatabase.getDatabase(context).todoDao()\r\n\r\n    val allTodos: Flow<List<Todo>> = dao.getAllTodos()\r\n    val currentDateTodos: Flow<List<Todo>> = dao.getTodosByDate(LocalDate.now().toString())\r\n    val importantTodos: Flow<List<Todo>> = dao.getImportantTodos()\r\n    val scheduledTodos: Flow<List<Todo>> = dao.getScheduledTodos(LocalDate.now().toString())\r\n\r\n\r\n    fun addTodo(todo: Todo) {\r\n        viewModelScope.launch(Dispatchers.IO) {\r\n            dao.insert(todo)\r\n        }\r\n    }\r\n\r\n    fun isEmpty(): Boolean = runBlocking{\r\n        val todosList = allTodos.firstOrNull()\r\n        todosList.isNullOrEmpty()\r\n    }\r\n\r\n    fun isImportantEmpty(): Boolean = runBlocking {\r\n        val todosList = importantTodos.firstOrNull()\r\n        todosList.isNullOrEmpty()\r\n    }\r\n\r\n    fun isScheduledEmpty(): Boolean = runBlocking{\r\n        val todosList = scheduledTodos.firstOrNull()\r\n        todosList.isNullOrEmpty()\r\n    }\r\n\r\n    suspend fun deleteSelectedTodos(id:Long) {\r\n        dao.delete(id)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/todoViewModels/TodoViewModel.kt b/app/src/main/java/com/example/myapplication/todoViewModels/TodoViewModel.kt
+--- a/app/src/main/java/com/example/myapplication/todoViewModels/TodoViewModel.kt	
++++ b/app/src/main/java/com/example/myapplication/todoViewModels/TodoViewModel.kt	
+@@ -21,7 +21,7 @@
+     val currentDateTodos: Flow<List<Todo>> = dao.getTodosByDate(LocalDate.now().toString())
+     val importantTodos: Flow<List<Todo>> = dao.getImportantTodos()
+     val scheduledTodos: Flow<List<Todo>> = dao.getScheduledTodos(LocalDate.now().toString())
+-
++    val favoriteTodos: Flow<List<Todo>> = dao.getFavoriteTodos()
+ 
+     fun addTodo(todo: Todo) {
+         viewModelScope.launch(Dispatchers.IO) {
+@@ -43,6 +43,11 @@
+         val todosList = scheduledTodos.firstOrNull()
+         todosList.isNullOrEmpty()
+     }
++
++    fun isFavoritesEmpty(): Boolean = runBlocking{
++        val todosList = favoriteTodos.firstOrNull()
++        todosList.isNullOrEmpty()
++    }
+ 
+     suspend fun deleteSelectedTodos(id:Long) {
+         dao.delete(id)
+Index: app/src/main/java/com/example/myapplication/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication\r\n\r\nimport android.os.Bundle\r\nimport androidx.activity.ComponentActivity\r\nimport androidx.activity.compose.setContent\r\nimport androidx.compose.foundation.layout.Arrangement\r\nimport androidx.compose.foundation.layout.Column\r\nimport androidx.compose.foundation.layout.fillMaxSize\r\nimport androidx.compose.foundation.layout.padding\r\nimport androidx.compose.material.icons.Icons\r\nimport androidx.compose.material.icons.filled.Add\r\nimport androidx.compose.material3.ExperimentalMaterial3Api\r\nimport androidx.compose.material3.FloatingActionButton\r\nimport androidx.compose.material3.Icon\r\nimport androidx.compose.material3.IconButton\r\nimport androidx.compose.material3.MaterialTheme\r\nimport androidx.compose.material3.Scaffold\r\nimport androidx.compose.material3.Surface\r\nimport androidx.compose.material3.Text\r\nimport androidx.compose.material3.TopAppBar\r\nimport androidx.compose.material3.TopAppBarDefaults\r\nimport androidx.compose.runtime.Composable\r\nimport androidx.compose.runtime.getValue\r\nimport androidx.compose.runtime.mutableStateOf\r\nimport androidx.compose.runtime.remember\r\nimport androidx.compose.runtime.setValue\r\nimport androidx.compose.ui.Alignment\r\nimport androidx.compose.ui.Modifier\r\nimport com.example.myapplication.screens.AddTodo\r\nimport com.example.myapplication.screens.CategoryScreen\r\nimport com.example.myapplication.screens.TodoDetail\r\nimport com.example.myapplication.ui.theme.MyApplicationTheme\r\n\r\nclass MainActivity : ComponentActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContent {\r\n            MyApplicationTheme {\r\n                // A surface container using the 'background' color from the theme\r\n                Surface(\r\n                    modifier = Modifier.fillMaxSize(),\r\n                    color = MaterialTheme.colorScheme.background\r\n                ) {\r\n                    App() //Code For Navigation\r\n//                    AddTodo() //For adding the todo to the database\r\n                    //TodoDetail() //{Here in this screen we may need to add the Navigation Bar in the Scaffold}\r\n                    //DisplayScaffold()\r\n                    //CategoryScreen(categories = TodoCategoryData())\r\n                }\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n@OptIn(ExperimentalMaterial3Api::class)\r\n@Composable\r\nfun App(){\r\n    var currentScreen by remember { mutableStateOf(Screen.Home) }\r\n    var selectedScreenID by remember { mutableStateOf(ScreenID.HOME) }\r\n    var title by remember { mutableStateOf(\"Home\") }\r\n    fun updatedSelectedID(id: Int, newTitle: String) {\r\n        selectedScreenID = id\r\n        title = newTitle\r\n    }\r\n\r\n    Scaffold(\r\n        topBar = {\r\n            TopAppBar(\r\n                title = { Text(title) },\r\n                colors = TopAppBarDefaults.smallTopAppBarColors(\r\n                    containerColor = MaterialTheme.colorScheme.primaryContainer,\r\n                    titleContentColor = MaterialTheme.colorScheme.primary\r\n                )\r\n            )\r\n        },\r\n        bottomBar = {\r\n            NavigationComponents(\r\n                selectedScreenID = selectedScreenID,\r\n                updatedSelected = ::updatedSelectedID\r\n            )\r\n        },\r\n        floatingActionButton = {\r\n            FloatingActionButton(onClick = { }) {\r\n                IconButton(onClick = { currentScreen = Screen.AddTodoScreen }) {\r\n                    Icon(Icons.Filled.Add, contentDescription = \"ADD\")\r\n                }\r\n            }\r\n        }\r\n    ) {\r\n        Column(\r\n            modifier = Modifier\r\n                .padding(it)\r\n                .fillMaxSize(),\r\n            verticalArrangement = Arrangement.Top,\r\n            horizontalAlignment = Alignment.Start\r\n        ) {\r\n            var currentCategory by remember {\r\n                mutableStateOf<TodoCategories?>(null)\r\n            }\r\n            MaterialTheme {\r\n                when (currentScreen) {\r\n                    Screen.Home -> CategoryScreen(categories = TodoCategoryData()) { selectedCategory ->\r\n                        currentScreen = Screen.TodoScreen\r\n                        currentCategory = selectedCategory\r\n                    }\r\n                    Screen.TodoScreen -> TodoDetail(selectedCategory = currentCategory) {\r\n                        currentScreen = Screen.Home\r\n                    }\r\n                    Screen.AddTodoScreen -> AddTodo() {\r\n                        currentScreen = Screen.TodoScreen\r\n                        currentCategory = TodoCategories(\"All\")\r\n                    }\r\n//            Screen.Details -> DetailsScreen { currentScreen = Screen.Home }\r\n                }\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\nenum class Screen{\r\n    Home, TodoScreen, AddTodoScreen\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/MainActivity.kt b/app/src/main/java/com/example/myapplication/MainActivity.kt
+--- a/app/src/main/java/com/example/myapplication/MainActivity.kt	
++++ b/app/src/main/java/com/example/myapplication/MainActivity.kt	
+@@ -28,6 +28,8 @@
+ import androidx.compose.ui.Modifier
+ import com.example.myapplication.screens.AddTodo
+ import com.example.myapplication.screens.CategoryScreen
++import com.example.myapplication.screens.Fav
++import com.example.myapplication.screens.Settings
+ import com.example.myapplication.screens.TodoDetail
+ import com.example.myapplication.ui.theme.MyApplicationTheme
+ 
+@@ -61,6 +63,15 @@
+     fun updatedSelectedID(id: Int, newTitle: String) {
+         selectedScreenID = id
+         title = newTitle
++
++        //Navigation for the Bottom bar
++        currentScreen = when(id){
++            ScreenID.HOME -> Screen.Home
++            ScreenID.FAVORITES -> Screen.Favorites
++            ScreenID.SETTING -> Screen.Settings
++            ScreenID.ADD -> Screen.AddTodoScreen
++            else -> currentScreen
++        }
+     }
+ 
+     Scaffold(
+@@ -78,13 +89,6 @@
+                 selectedScreenID = selectedScreenID,
+                 updatedSelected = ::updatedSelectedID
+             )
+-        },
+-        floatingActionButton = {
+-            FloatingActionButton(onClick = { }) {
+-                IconButton(onClick = { currentScreen = Screen.AddTodoScreen }) {
+-                    Icon(Icons.Filled.Add, contentDescription = "ADD")
+-                }
+-            }
+         }
+     ) {
+         Column(
+@@ -110,6 +114,12 @@
+                         currentScreen = Screen.TodoScreen
+                         currentCategory = TodoCategories("All")
+                     }
++                    Screen.Settings -> {
++                        Settings()
++                    }
++                    Screen.Favorites -> {
++                        Fav()
++                    }
+ //            Screen.Details -> DetailsScreen { currentScreen = Screen.Home }
+                 }
+             }
+@@ -118,5 +128,5 @@
+ }
+ 
+ enum class Screen{
+-    Home, TodoScreen, AddTodoScreen
++    Home, TodoScreen, AddTodoScreen, Favorites, Settings
+ }
+Index: app/src/main/java/com/example/myapplication/todoDao/TodoDao.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication.todoDao\r\n\r\nimport androidx.room.Dao\r\nimport androidx.room.Insert\r\nimport androidx.room.OnConflictStrategy\r\nimport androidx.room.Query\r\nimport com.example.myapplication.todoEntities.Todo\r\nimport kotlinx.coroutines.flow.Flow\r\n\r\n@Dao\r\ninterface TodoDao {\r\n\r\n    @Insert(onConflict = OnConflictStrategy.IGNORE)\r\n    suspend fun insert(todo: Todo)\r\n\r\n    @Query(\"SELECT * FROM \"+ Todo.TABLE_NAME)\r\n    fun getAllTodos(): Flow<List<Todo>>\r\n\r\n    @Query(\"SELECT * FROM \"+Todo.TABLE_NAME+ \" WHERE date =:currentDate\")\r\n    fun getTodosByDate(currentDate: String): Flow<List<Todo>>\r\n\r\n    @Query(\"Delete from \"+Todo.TABLE_NAME+ \" where id = :id\")\r\n    suspend fun delete(id:Long)\r\n\r\n    @Query(\"SELECT * FROM \"+Todo.TABLE_NAME+ \" WHERE isImportant = true\")\r\n    fun getImportantTodos(): Flow<List<Todo>>\r\n\r\n    @Query(\"SELECT * FROM \"+Todo.TABLE_NAME+ \" WHERE scheduledDate != :currentDate AND scheduledDate IS NOT NULL AND scheduledDate != 'null'\")\r\n    fun getScheduledTodos(currentDate: String): Flow<List<Todo>>\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/todoDao/TodoDao.kt b/app/src/main/java/com/example/myapplication/todoDao/TodoDao.kt
+--- a/app/src/main/java/com/example/myapplication/todoDao/TodoDao.kt	
++++ b/app/src/main/java/com/example/myapplication/todoDao/TodoDao.kt	
+@@ -27,4 +27,7 @@
+ 
+     @Query("SELECT * FROM "+Todo.TABLE_NAME+ " WHERE scheduledDate != :currentDate AND scheduledDate IS NOT NULL AND scheduledDate != 'null'")
+     fun getScheduledTodos(currentDate: String): Flow<List<Todo>>
++
++    @Query("SELECT * FROM "+Todo.TABLE_NAME+ " WHERE isFavorite = true")
++    fun getFavoriteTodos(): Flow<List<Todo>>
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/myapplication/screens/TodoScreen.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication.screens\r\n\r\nimport android.annotation.SuppressLint\r\nimport android.util.Log\r\nimport androidx.compose.foundation.clickable\r\nimport androidx.compose.foundation.layout.Arrangement\r\nimport androidx.compose.foundation.layout.Column\r\nimport androidx.compose.foundation.layout.Row\r\nimport androidx.compose.foundation.layout.fillMaxSize\r\nimport androidx.compose.foundation.layout.fillMaxWidth\r\nimport androidx.compose.foundation.layout.padding\r\nimport androidx.compose.foundation.lazy.LazyColumn\r\nimport androidx.compose.foundation.shape.CornerSize\r\nimport androidx.compose.foundation.shape.RoundedCornerShape\r\nimport androidx.compose.material.icons.Icons\r\nimport androidx.compose.material.icons.filled.CheckCircle\r\nimport androidx.compose.material.icons.filled.Delete\r\nimport androidx.compose.material.icons.filled.Favorite\r\nimport androidx.compose.material.icons.outlined.CheckCircle\r\nimport androidx.compose.material.icons.outlined.FavoriteBorder\r\nimport androidx.compose.material3.Button\r\nimport androidx.compose.material3.Card\r\nimport androidx.compose.material3.CardDefaults\r\nimport androidx.compose.material3.Checkbox\r\nimport androidx.compose.material3.Icon\r\nimport androidx.compose.material3.IconButton\r\nimport androidx.compose.material3.Text\r\nimport androidx.compose.runtime.Composable\r\nimport androidx.compose.runtime.collectAsState\r\nimport androidx.compose.runtime.getValue\r\nimport androidx.compose.runtime.mutableStateOf\r\nimport androidx.compose.runtime.remember\r\nimport androidx.compose.runtime.rememberCoroutineScope\r\nimport androidx.compose.runtime.setValue\r\nimport androidx.compose.ui.Alignment\r\nimport androidx.compose.ui.Modifier\r\nimport androidx.compose.ui.platform.LocalContext\r\nimport androidx.compose.ui.text.SpanStyle\r\nimport androidx.compose.ui.text.buildAnnotatedString\r\nimport androidx.compose.ui.text.font.FontWeight\r\nimport androidx.compose.ui.text.style.TextDecoration\r\nimport androidx.compose.ui.text.withStyle\r\nimport androidx.compose.ui.unit.dp\r\nimport androidx.compose.ui.unit.sp\r\nimport androidx.lifecycle.viewmodel.compose.viewModel\r\nimport com.example.myapplication.TodoCategories\r\nimport com.example.myapplication.todoDatabase.TodoDatabase\r\nimport com.example.myapplication.todoEntities.Todo\r\nimport com.example.myapplication.todoViewModels.TodoViewModel\r\nimport kotlinx.coroutines.flow.Flow\r\nimport kotlinx.coroutines.launch\r\n\r\nvar toBeDeletedRows = hashSetOf<Long>()\r\n\r\n@SuppressLint(\"UnusedMaterial3ScaffoldPaddingParameter\")\r\n@Composable\r\nfun TodoDetail(selectedCategory: TodoCategories?, onNavigate: () -> Unit){\r\n    val todoViewModel: TodoViewModel = viewModel()\r\n    val buttonCoroutineScope = rememberCoroutineScope()\r\n    val dao = TodoDatabase.getDatabase(LocalContext.current).todoDao()\r\nLazyColumn(\r\n        modifier = Modifier\r\n            .padding(5.dp)\r\n            .fillMaxSize())\r\n         {item{\r\n             if(todoViewModel.isEmpty()){\r\n                 Text(text = (\"No Todos\"))\r\n             }\r\n             else{\r\n                 if(selectedCategory?.todoCategories == \"Today\"){\r\n                     Todos(todo = todoViewModel.currentDateTodos, todoViewModel)\r\n                     Button(onClick = { onNavigate() }) {\r\n                         Text(text = \"Go to Home Screen\")\r\n                     }\r\n\r\n                     //This function needs to be moved to fun Todos to make it global for every todo\r\n                     //Currently this is just visible for Today category todos\r\n                     fun clickToDelete(){\r\n                         toBeDeletedRows.iterator().forEach { element->\r\n                             buttonCoroutineScope.launch {\r\n\r\n                                 dao.delete(\r\n                                     element\r\n                                 )\r\n                             }\r\n                         }\r\n                     }\r\n                     IconButton(onClick = {\r\n                         clickToDelete()\r\n                     }) {\r\n                         Icon(Icons.Default.Delete, contentDescription =\"Delete\" )\r\n                     }\r\n                     Log.i(\"cat\", \"Todayyyyyyyyyy\")\r\n                 }\r\n                 if(selectedCategory?.todoCategories == \"All\"){\r\n                     Todos(todo = todoViewModel.allTodos, todoViewModel)\r\n                     Button(onClick = { onNavigate() } ) {\r\n                         Text(text = \"Go to Home Screen\")\r\n                     }\r\n                     Log.i(\"cat\", \"ALLLLLLLLL\")\r\n                 }\r\n                 if(selectedCategory?.todoCategories == \"Scheduled\"){\r\n                     if(todoViewModel.isScheduledEmpty()){\r\n                         Text(text = \"No Scheduled todos\")\r\n                     }\r\n                     else{\r\n                         Todos(todo = todoViewModel.scheduledTodos, todoViewModel)\r\n                         Button(onClick = { onNavigate() }) {\r\n                             Text(text = \"Go to Home Screen\")\r\n                         }\r\n                     }\r\n                     Log.i(\"cat\", \"Scheduled\")\r\n                 }\r\n                 if(selectedCategory?.todoCategories == \"Important\"){\r\n                     if(todoViewModel.isImportantEmpty()){\r\n                         Text(text = \"No Important todos\")\r\n                     }\r\n                     else{\r\n                         Todos(todo = todoViewModel.importantTodos, viewModel = todoViewModel)\r\n                         Button(onClick = { onNavigate() }) {\r\n                             Text(text = \"Go to Home Screen\")\r\n                         }\r\n                     }\r\n                     Log.i(\"cat\", \"Important\")\r\n                 }\r\n                 if(selectedCategory?.todoCategories == \"Finished\"){\r\n                     Text(text = \"No Todos here in Finished\")  //Placeholder for now\r\n                     Button(onClick = { onNavigate() }) {\r\n                         Text(text = \"Go to Home Screen\")\r\n                     }\r\n                     Log.i(\"cat\", \"Finished\")\r\n                 }\r\n                 if(selectedCategory?.todoCategories == \"Bin\"){\r\n                     Text(text = \"No Todos here\")  //Placeholder for now\r\n                     Button(onClick = { onNavigate() }) {\r\n                         Text(text = \"Go to Home Screen\")\r\n                     }\r\n                     Log.i(\"cat\", \"Bin\")\r\n                 }\r\n             }\r\n        }\r\n     }\r\n}\r\n\r\n\r\n@Composable\r\nfun Todos(todo: Flow<List<Todo>>, viewModel: TodoViewModel){\r\n    val todosState by todo.collectAsState(initial = emptyList())\r\n\r\n    Column {\r\n        todosState.forEach { todoItem ->\r\n            val isChecked = remember{ mutableStateOf(false) }\r\n            val textDecoration = if(isChecked.value) TextDecoration.LineThrough else null\r\n            var isFavClicked by remember { mutableStateOf(false) }\r\n            var isImportantClicked by remember { mutableStateOf(false) }\r\n            val favIcon = if (isFavClicked){\r\n                Icons.Filled.Favorite\r\n            }else{\r\n                Icons.Outlined.FavoriteBorder\r\n            }\r\n            val impIcon = if (isImportantClicked){\r\n                Icons.Filled.CheckCircle\r\n            }else{\r\n                Icons.Outlined.CheckCircle\r\n            }\r\n            Card(\r\n                modifier = Modifier\r\n                    .padding(horizontal = 8.dp, vertical = 8.dp)\r\n                    .fillMaxWidth()\r\n                    .clickable(onClick = { }),\r\n                shape = RoundedCornerShape(CornerSize(10.dp)),\r\n                elevation = CardDefaults.cardElevation(2.dp)\r\n            ) {\r\n                Column(\r\n                    modifier = Modifier.padding(bottom = 10.dp),\r\n                    verticalArrangement = Arrangement.SpaceBetween,\r\n                    horizontalAlignment = Alignment.CenterHorizontally\r\n                ) {\r\n                    Row(\r\n                        modifier = Modifier.padding(5.dp),\r\n                        horizontalArrangement = Arrangement.SpaceBetween,\r\n                        verticalAlignment = Alignment.CenterVertically\r\n                    ) {\r\n                        Checkbox(checked = isChecked.value, onCheckedChange = {\r\n                            isChecked.value = it\r\n                        })\r\n                        if(isChecked.value){\r\n                            toBeDeletedRows.add(todoItem.id)\r\n                        }else{\r\n                            if(toBeDeletedRows.contains(todoItem.id))\r\n                                toBeDeletedRows.remove(todoItem.id)\r\n                        }\r\n\r\n                        Text(\r\n                            modifier = Modifier.fillMaxWidth(0.9f),\r\n                            text = buildAnnotatedString {\r\n                                withStyle(style = SpanStyle(textDecoration = textDecoration)) {\r\n                                    append(todoItem.title)\r\n                                }\r\n                            },\r\n                            fontSize = 20.sp,\r\n                            fontWeight = FontWeight.Bold\r\n                        )\r\n                        if (todoItem.isFavorite) {\r\n                            var isFavClicked by remember { mutableStateOf(todoItem.isFavorite) }\r\n                            val favIcon = if (isFavClicked) {\r\n                                Icons.Filled.Favorite\r\n                            } else {\r\n                                Icons.Outlined.FavoriteBorder\r\n                            }\r\n                            Icon(\r\n                                imageVector = favIcon,\r\n                                contentDescription = \"Already Favorite\",\r\n                                modifier = Modifier.clickable {\r\n                                    isFavClicked = !isFavClicked\r\n                                }\r\n                            )\r\n                        } else {\r\n                            Icon(\r\n                                imageVector = favIcon,\r\n                                contentDescription = \"Not Favorite\",\r\n                                modifier = Modifier.clickable {\r\n                                    isFavClicked = !isFavClicked\r\n                                }\r\n                            )\r\n                        }\r\n                    }\r\n                    Row(\r\n                        modifier = Modifier\r\n                            .padding(5.dp),\r\n                        horizontalArrangement = Arrangement.SpaceBetween,\r\n                        verticalAlignment = Alignment.CenterVertically\r\n                    ) {\r\n                        Column(\r\n                            modifier = Modifier\r\n                                .padding(5.dp)\r\n                                .fillMaxWidth(0.9f),\r\n                            verticalArrangement = Arrangement.SpaceBetween,\r\n                            horizontalAlignment = Alignment.Start\r\n                        ) {\r\n                            Text(\r\n                                text = buildAnnotatedString {\r\n                                    withStyle(style = SpanStyle(textDecoration = textDecoration)) {\r\n                                        append(todoItem.description)\r\n                                    }\r\n                                })\r\n                            Text(\r\n                                text = buildAnnotatedString {\r\n                                    withStyle(style = SpanStyle(textDecoration = if (isChecked.value) TextDecoration.LineThrough else null)) {\r\n                                        append(todoItem.date)\r\n                                    }\r\n                                }\r\n                            )\r\n                        }\r\n                        if (todoItem.isImportant) {\r\n                            var isImportantClicked by remember { mutableStateOf(todoItem.isImportant) }\r\n                            val impIcon = if (isImportantClicked){\r\n                                Icons.Filled.CheckCircle\r\n                            }else{\r\n                                Icons.Outlined.CheckCircle\r\n                            }\r\n                            Icon(\r\n                                imageVector = impIcon,\r\n                                contentDescription = \"Already Favorite\",\r\n                                modifier = Modifier.clickable {\r\n                                    isImportantClicked = !isImportantClicked\r\n                                }\r\n                            )\r\n                        } else {\r\n                            Icon(\r\n                                imageVector = impIcon,\r\n                                contentDescription = \"Not Favorite\",\r\n                                modifier = Modifier.clickable {\r\n                                    isImportantClicked = !isImportantClicked\r\n                                }\r\n                            )\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/screens/TodoScreen.kt b/app/src/main/java/com/example/myapplication/screens/TodoScreen.kt
+--- a/app/src/main/java/com/example/myapplication/screens/TodoScreen.kt	
++++ b/app/src/main/java/com/example/myapplication/screens/TodoScreen.kt	
+@@ -15,13 +15,17 @@
+ import androidx.compose.material.icons.Icons
+ import androidx.compose.material.icons.filled.CheckCircle
+ import androidx.compose.material.icons.filled.Delete
++import androidx.compose.material.icons.filled.Edit
+ import androidx.compose.material.icons.filled.Favorite
++import androidx.compose.material.icons.filled.Info
+ import androidx.compose.material.icons.outlined.CheckCircle
+ import androidx.compose.material.icons.outlined.FavoriteBorder
++import androidx.compose.material.icons.outlined.Info
+ import androidx.compose.material3.Button
+ import androidx.compose.material3.Card
+ import androidx.compose.material3.CardDefaults
+ import androidx.compose.material3.Checkbox
++import androidx.compose.material3.Divider
+ import androidx.compose.material3.Icon
+ import androidx.compose.material3.IconButton
+ import androidx.compose.material3.Text
+@@ -149,6 +153,7 @@
+ 
+     Column {
+         todosState.forEach { todoItem ->
++            var isExpanded by remember { mutableStateOf(false) }
+             val isChecked = remember{ mutableStateOf(false) }
+             val textDecoration = if(isChecked.value) TextDecoration.LineThrough else null
+             var isFavClicked by remember { mutableStateOf(false) }
+@@ -159,15 +164,15 @@
+                 Icons.Outlined.FavoriteBorder
+             }
+             val impIcon = if (isImportantClicked){
+-                Icons.Filled.CheckCircle
++                Icons.Filled.Info
+             }else{
+-                Icons.Outlined.CheckCircle
++                Icons.Outlined.Info
+             }
+             Card(
+                 modifier = Modifier
+                     .padding(horizontal = 8.dp, vertical = 8.dp)
+                     .fillMaxWidth()
+-                    .clickable(onClick = { }),
++                    .clickable(onClick = { isExpanded = !isExpanded }),
+                 shape = RoundedCornerShape(CornerSize(10.dp)),
+                 elevation = CardDefaults.cardElevation(2.dp)
+             ) {
+@@ -255,9 +260,9 @@
+                         if (todoItem.isImportant) {
+                             var isImportantClicked by remember { mutableStateOf(todoItem.isImportant) }
+                             val impIcon = if (isImportantClicked){
+-                                Icons.Filled.CheckCircle
++                                Icons.Filled.Info
+                             }else{
+-                                Icons.Outlined.CheckCircle
++                                Icons.Outlined.Info
+                             }
+                             Icon(
+                                 imageVector = impIcon,
+@@ -276,6 +281,58 @@
+                             )
+                         }
+                     }
++
++                    //Expand the todos
++                    if(isExpanded){
++                        Divider(modifier = Modifier.padding(vertical = 5.dp),
++                            thickness = 1.dp,
++                        )
++                        Text(
++                            text = buildAnnotatedString {
++                                withStyle(style = SpanStyle(textDecoration = if (isChecked.value) TextDecoration.LineThrough else null)) {
++                                    if(todoItem.scheduledDate == "null"){
++                                        append("Scheduled Date: Not scheduled")
++                                    }
++                                    else{
++                                        append("Scheduled Date: "+todoItem.scheduledDate)
++                                    }
++                                }
++                            })
++                        Text(
++                            text = buildAnnotatedString {
++                                withStyle(style = SpanStyle(textDecoration = if (isChecked.value) TextDecoration.LineThrough else null)) {
++                                    if(todoItem.scheduledTime == "null"){
++                                        append("Scheduled Time: Not scheduled")
++                                    }
++                                    else{
++                                        append("Scheduled Time: "+todoItem.scheduledTime)
++                                    }
++
++                                }
++                            })
++                        Divider(modifier = Modifier.padding(vertical = 5.dp),
++                            thickness = 1.dp,
++                        )
++                        Row(
++                            modifier = Modifier
++                                .padding(5.dp)
++                                .fillMaxWidth(),
++                            horizontalArrangement = Arrangement.SpaceBetween
++                        ) {
++
++                            //Delete Todo Button
++                            IconButton(onClick = { }) {
++                                Icon(
++                                    imageVector = Icons.Filled.Delete,
++                                    contentDescription = "Edit Todo"
++                                )
++                            }
++                            //Edit Todo Button
++                            IconButton(onClick = { }) {
++                                Icon(imageVector = Icons.Filled.Edit, contentDescription = "Edit Todo")
++                            }
++                        }
++                    }
+                 }
+             }
+         }
+Index: app/src/main/java/com/example/myapplication/screens/SettingsScreen.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/screens/SettingsScreen.kt b/app/src/main/java/com/example/myapplication/screens/SettingsScreen.kt
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/example/myapplication/screens/SettingsScreen.kt	
+@@ -0,0 +1,60 @@
++package com.example.myapplication.screens
++
++import androidx.compose.foundation.layout.Arrangement
++import androidx.compose.foundation.layout.Column
++import androidx.compose.foundation.layout.Row
++import androidx.compose.foundation.layout.fillMaxWidth
++import androidx.compose.foundation.layout.padding
++import androidx.compose.material3.Switch
++import androidx.compose.material3.Text
++import androidx.compose.runtime.Composable
++import androidx.compose.runtime.getValue
++import androidx.compose.runtime.mutableStateOf
++import androidx.compose.runtime.remember
++import androidx.compose.runtime.setValue
++import androidx.compose.ui.Alignment
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.tooling.preview.Preview
++import androidx.compose.ui.unit.dp
++import com.example.myapplication.ui.theme.MyApplicationTheme
++
++@Composable
++fun Settings() {
++    var uiThemeSwitch by remember { mutableStateOf(false) }
++    var themeText by remember { mutableStateOf("Light Mode") }
++
++    if(uiThemeSwitch){
++        MyApplicationTheme(true){
++
++        }
++    }
++    else{
++        MyApplicationTheme(false){
++
++        }
++    }
++    Column {
++        Row(
++            modifier = Modifier
++                .fillMaxWidth()
++                .padding(10.dp),
++            horizontalArrangement = Arrangement.SpaceBetween,
++            verticalAlignment = Alignment.CenterVertically
++
++        ) {
++            Text(themeText)
++            Switch(
++                checked = uiThemeSwitch,
++                onCheckedChange = {
++                    uiThemeSwitch = it
++                    themeText = if (it) "Dark Mode" else "Light Mode"
++                })
++        }
++    }
++}
++
++@Preview(showSystemUi = true)
++@Composable
++fun Preview(){
++    Settings()
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/myapplication/screens/FavoritesScreen.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/screens/FavoritesScreen.kt b/app/src/main/java/com/example/myapplication/screens/FavoritesScreen.kt
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/example/myapplication/screens/FavoritesScreen.kt	
+@@ -0,0 +1,29 @@
++package com.example.myapplication.screens
++
++import androidx.compose.foundation.layout.fillMaxSize
++import androidx.compose.foundation.layout.padding
++import androidx.compose.foundation.lazy.LazyColumn
++import androidx.compose.material3.Text
++import androidx.compose.runtime.Composable
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.unit.dp
++import androidx.lifecycle.viewmodel.compose.viewModel
++import com.example.myapplication.todoViewModels.TodoViewModel
++
++@Composable
++fun Fav(){
++    val todoViewModel: TodoViewModel = viewModel()
++    LazyColumn(
++        modifier = Modifier
++            .padding(5.dp)
++            .fillMaxSize())
++    {
++        item {
++            if (todoViewModel.isFavoritesEmpty()) {
++                Text(text = "No Favorite todos")
++            } else {
++                Todos(todo = todoViewModel.favoriteTodos, todoViewModel)
++            }
++        }
++    }
++}
+\ No newline at end of file
