@@ -1,4 +1,4 @@
-# ✅ Advanced Android Todo App
+# ✅ Advanced Android Task Management Application
 
 A **feature-rich Todo application** built with **Kotlin** and **Jetpack Compose**, designed to go beyond basic task management.  
 The app integrates **multimedia support**, **geolocation features**, and **modern Android architecture**, making it a practical yet experimental project for exploring advanced mobile development.  
