@@ -38,13 +38,13 @@ This project led to the development of a feature-rich Todo app for Android, buil
 
 This project showcases:
 
-Hands-on experience with Jetpack Compose and modern UI patterns.
+- Hands-on experience with Jetpack Compose and modern UI patterns.
 
-Using Kotlin Coroutines and Flow for asynchronous programming.
+- Using Kotlin Coroutines and Flow for asynchronous programming.
 
-Integrating device services like multimedia and location into Android apps.
+- Integrating device services like multimedia and location into Android apps.
 
-Building scalable apps with clean architecture and DI.
+- Building scalable apps with clean architecture and DI.
 
 ---
 
